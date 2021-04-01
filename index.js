@@ -46,7 +46,7 @@ app.get('/api/notes/:id', (req, res, next) => {
     });
 });
 
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes', (req, res, next) => {
   const note = req.body;
 
   const newNote = new Note({
@@ -59,12 +59,7 @@ app.post('/api/notes', (req, res) => {
     .then((result) => {
       res.status(201).json(result);
     })
-    .catch((error) => {
-      console.log(error);
-      res.status(503).json({
-        error: 'Ha habido un error'
-      });
-    });
+    .catch((error) => next(error));
 });
 
 app.put('/api/notes/:id', (req, res, next) => {
