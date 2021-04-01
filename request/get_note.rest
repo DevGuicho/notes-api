@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/notes/6065252c512a9226589c6b36

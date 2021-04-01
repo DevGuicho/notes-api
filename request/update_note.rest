@@ -1,0 +1,6 @@
+PUT http://localhost:3000/api/notes/60651ccd3116c8295841734d
+Content-Type: application/json
+
+{
+  "content": "Hacer una api rest ya"
+}
