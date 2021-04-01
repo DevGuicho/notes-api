@@ -65,4 +65,10 @@ app.delete('/api/notes/:id', (req, res) => {
   res.status(204).end();
 });
 
+app.use((req, res) => {
+  res.status(404).json({
+    error: 'Error 404'
+  });
+});
+
 app.listen(3000, () => console.log(`Server running on port ${port}`));
