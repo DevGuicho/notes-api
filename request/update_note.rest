@@ -1,6 +1,8 @@
-PUT http://localhost:3000/api/notes/60651ccd3116c8295841734d
+PUT http://localhost:3001/api/notes/6067b4069c07942614c4671e
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjdhNWJhMGU0NzRkMTVlMGE3MGI3OSIsInVzZXJuYW1lIjoiZGV2Z3VpY2hvIiwiaWF0IjoxNjE3NDA4ODMyfQ.eCyyeSjZEuO4QGYa-0cFiMJP498M69FjYNd8iNYHfGg
 
 {
-  "content": "Hacer una api rest ya"
+  "content": "Hacer una api rest ya",
+  "important": false
 }

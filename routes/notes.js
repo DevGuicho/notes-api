@@ -60,7 +60,7 @@ router.put('/:id', auth, (req, res, next) => {
   const { id } = req.params;
   const note = req.body;
 
-  Note.findOneAndUpdate(id, note, { new: true })
+  Note.findOneAndUpdate({ _id: id }, note, { new: true })
     .then((resultado) => {
       res.status(200).json({
         message: 'Nota actualizada',
