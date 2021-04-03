@@ -5,7 +5,8 @@ const config = {
   dbUser: process.env.DB_USER,
   dbHost: process.env.DB_HOST,
   dbName: process.env.DB_NAME,
-  dbNameTest: process.env.DB_NAME_TEST
+  dbNameTest: process.env.DB_NAME_TEST,
+  secret: process.env.SECRET
 };
 
 module.exports = { config };

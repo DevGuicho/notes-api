@@ -1,7 +1,8 @@
 POST http://localhost:3000/api/notes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjdhNWJhMGU0NzRkMTVlMGE3MGI3OSIsInVzZXJuYW1lIjoiZGV2Z3VpY2hvIiwiaWF0IjoxNjE3NDA4ODMyfQ.eCyyeSjZEuO4QGYa-0cFiMJP498M69FjYNd8iNYHfGg
 
 {
-  "content": "Repasar los retos de JS de midudev",
+  "content": "Repasar los retos de JS de midudev 2",
   "important": true
 }

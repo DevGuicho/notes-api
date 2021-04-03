@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Note = require('../models/Note');
+const User = require('../models/User');
+const auth = require('../middlewares/Auth');
 
 router.get('/', async (req, res) => {
-  const notes = await Note.find({});
+  const notes = await Note.find({}).populate('user', {
+    name: 1,
+    username: 1
+  });
   res.json(notes);
 });
 
@@ -28,23 +33,30 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
   const note = req.body;
-  if (!note.content) return res.status(400).json({ error: 'Invalid format' });
+  const { userId } = req;
+  const { content, important } = note;
+  const user = await User.findById(userId);
+
+  if (!content) return res.status(400).json({ error: 'Invalid format' });
+  const newNote = new Note({
+    content: content,
+    date: new Date(),
+    important: important || false,
+    user: user._id
+  });
   try {
-    const newNote = new Note({
-      content: note.content,
-      date: new Date(),
-      important: note.important || false
-    });
     const noteSaved = await newNote.save();
+    user.notes = user.notes.concat(newNote._id);
+    await user.save();
     res.status(201).json(noteSaved);
   } catch (error) {
     next(error);
   }
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', auth, (req, res, next) => {
   const { id } = req.params;
   const note = req.body;
 
@@ -58,7 +70,7 @@ router.put('/:id', (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', auth, (req, res, next) => {
   const { id } = req.params;
   Note.findByIdAndDelete(id)
     .then((result) => {
