@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const auth = require('../middlewares/Auth');
 
-router.get('/', async (req, res) => {
-  const users = await User.find({}).populate('notes', {
+router.get('/', auth, async (req, res) => {
+  const { userId: _id } = req;
+  const query = { _id };
+  const users = await User.find(query).populate('notes', {
     content: 1,
     date: 1
   });

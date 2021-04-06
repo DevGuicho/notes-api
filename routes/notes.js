@@ -4,15 +4,17 @@ const Note = require('../models/Note');
 const User = require('../models/User');
 const auth = require('../middlewares/Auth');
 
-router.get('/', async (req, res) => {
-  const notes = await Note.find({}).populate('user', {
+router.get('/', auth, async (req, res) => {
+  const { userId: _id } = req;
+  const query = _id ? { user: _id } : {};
+  const notes = await Note.find(query).populate('user', {
     name: 1,
     username: 1
   });
   res.json(notes);
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', auth, (req, res, next) => {
   const { id } = req.params;
 
   Note.findById(id)

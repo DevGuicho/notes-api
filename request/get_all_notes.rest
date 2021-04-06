@@ -1,1 +1,2 @@
 GET http://localhost:3001/api/notes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjdhNWJhMGU0NzRkMTVlMGE3MGI3OSIsInVzZXJuYW1lIjoiZGV2Z3VpY2hvIiwiaWF0IjoxNjE3NTc0NzgwLCJleHAiOjE2MTgxNzk1ODB9.p1oZsDtNGcDqbdPlRUkqMVupcdx5YXSlAg-pPwdyie8

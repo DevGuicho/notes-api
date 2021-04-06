@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
 
   if (!decodedToken.id) {
     return res.status(401).json({
-      error: 'Token invalid'
+      error: 'Token invalid or expired'
     });
   }
   const { id: userId } = decodedToken;
